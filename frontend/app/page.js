@@ -40,7 +40,8 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchTransactions() {
       try {
-        const response = await fetch('http://localhost:3001/api/transactions');
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+        const response = await fetch(`${apiUrl}/api/transactions`);
         const data = await response.json();
         setTransactions(data);
       } catch (error) {
